@@ -13,14 +13,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.thedeanda.lorem.LoremIpsum
 import com.zr.nebula.Nebula
 import com.zr.nebulademo.ui.theme.NebulaDemoTheme
-import com.thedeanda.lorem.LoremIpsum
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,20 +76,37 @@ fun MainScreen() {
         )
         Button(
             content = {
-                Text(text = "Add 10.000 random log")
+                Text(text = "add log 2.000 data")
             },
             onClick = {
-                CoroutineScope(Dispatchers.Main).launch {
+                CoroutineScope(Dispatchers.IO).launch {
+                    repeat(2_000) {
+                        val intRandom = (1..4).random()
+                        when (intRandom) {
+                            1 -> Nebula.i(loremIpsum.getWords(5, 50))
+                            2 -> Nebula.w(loremIpsum.getWords(5, 50))
+                            3 -> Nebula.d(loremIpsum.getWords(5, 50))
+                            4 -> Nebula.e(loremIpsum.getWords(5, 50))
+                        }
+                    }
+                    Nebula.e("Zihad Rizky")
+                }
+            }
+        )
+        Button(
+            content = {
+                Text(text = "gradually add 100 log")
+            },
+            onClick = {
+                CoroutineScope(Dispatchers.IO).launch {
                     repeat(100) {
-                        delay(100)
-                        repeat(100) {
-                            val intRandom = (1..4).random()
-                            when (intRandom) {
-                                1 -> Nebula.i(loremIpsum.getWords(5, 50))
-                                2 -> Nebula.w(loremIpsum.getWords(5, 50))
-                                3 -> Nebula.d(loremIpsum.getWords(5, 50))
-                                4 -> Nebula.e(loremIpsum.getWords(5, 50))
-                            }
+                        delay(Random.nextLong(500))
+                        val intRandom = (1..4).random()
+                        when (intRandom) {
+                            1 -> Nebula.i(loremIpsum.getWords(5, 50))
+                            2 -> Nebula.w(loremIpsum.getWords(5, 50))
+                            3 -> Nebula.d(loremIpsum.getWords(5, 50))
+                            4 -> Nebula.e(loremIpsum.getWords(5, 50))
                         }
                     }
                 }

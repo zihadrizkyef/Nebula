@@ -16,6 +16,7 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"
+            android:icon="@drawable/baseline_info_24"
             android:label="@string/lib_name"
             android:launchMode="singleTask"
             android:taskAffinity="com.olsera.nebula"

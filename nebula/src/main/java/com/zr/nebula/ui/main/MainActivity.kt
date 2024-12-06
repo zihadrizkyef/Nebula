@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -43,6 +44,7 @@ import com.zr.nebula.item.Level
 import com.zr.nebula.item.Log
 import com.zr.nebula.ui.theme.NebulaTheme
 import com.zr.nebula.R
+import com.zr.nebula.extension.toCurrency
 import java.io.File
 import java.io.FileWriter
 
@@ -61,7 +63,7 @@ class MainActivity : ComponentActivity() {
                         logs = logs,
                         onDelete = { viewModel.deleteAll() },
                         onShare = {
-                            val text = logs.value.joinToString()
+                            val text = logs.value.joinToString("\n\n")
                             val file = writeToFile(this, text)
                             startIntentShareFile(this, file, "com.zr.nebula.fileprovider")
                         }
@@ -118,12 +120,29 @@ private fun LogListScreen(
                 )
             }
         }
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(8.dp),
-        ) {
-            items(logs.value) { log ->
-                Item(log = log)
+        if (logs.value.isEmpty()) {
+            Spacer(modifier = Modifier.height(64.dp))
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 32.dp),
+                text = stringResource(id = R.string.no_logs_message),
+                style = MaterialTheme.typography.displaySmall,
+                color = MaterialTheme.colorScheme.onSurface,
+                textAlign = TextAlign.Center,
+            )
+        } else {
+            Text(
+                modifier = Modifier.padding(8.dp),
+                text = String.format("%s logs", logs.value.size.toCurrency(false))
+            )
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(8.dp),
+            ) {
+                items(logs.value) { log ->
+                    Item(log = log)
+                }
             }
         }
     }
@@ -164,8 +183,8 @@ private fun getColorByLevel(levelCode: String): Color {
     }
 }
 
-private fun writeToFile(context: Context, text: String, fileName: String = "shared_file.txt"): File {
-    val file = File(context.cacheDir, fileName) // Save in cacheDir for temporary use
+private fun writeToFile(context: Context, text: String, fileName: String = "nebula_log.txt"): File {
+    val file = File(context.cacheDir, fileName)
     FileWriter(file).use { writer ->
         writer.write(text)
     }
@@ -184,7 +203,7 @@ fun startIntentShareFile(context: Context, file: File, authority: String) {
 
 @Preview(
     showBackground = true,
-    device = "id:pixel_5",
+    device = "id:small_phone",
 )
 @Composable
 private fun Preview() {
@@ -210,7 +229,7 @@ private fun Preview() {
 
 @Preview(
     showBackground = true,
-    device = "id:pixel_5",
+    device = "id:small_phone",
     uiMode = Configuration.UI_MODE_NIGHT_YES
 )
 @Composable
@@ -225,6 +244,24 @@ private fun PreviewNight() {
             }
         )
     }
+
+    NebulaTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            LogListScreen(sampleLogs)
+        }
+    }
+}
+
+@Preview(
+    showBackground = true,
+    device = "id:small_phone",
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+)
+@Composable
+private fun PreviewEmpty() {
+    val sampleLogs = remember { mutableStateOf(listOf<Log>()) }
 
     NebulaTheme {
         Surface(
