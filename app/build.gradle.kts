@@ -24,6 +24,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -47,7 +48,9 @@ android {
 }
 
 dependencies {
-    implementation(project(path = ":nebula"))
+    debugImplementation(project(path = ":nebula"))
+    releaseImplementation(project(path = ":nebula-no-op"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

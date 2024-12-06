@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "NebulaDemo"
 include(":app")
 include(":nebula")
+include(":nebula-no-op")
