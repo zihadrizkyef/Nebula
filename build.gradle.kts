@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(libs.realm.gradle.plugin)
+        classpath("io.realm:realm-gradle-plugin:10.18.0")
     }
 }
 plugins {
