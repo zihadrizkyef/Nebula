@@ -11,8 +11,8 @@ import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.zr.nebula.R
-import com.zr.nebula.item.Log
-import com.zr.nebula.ui.main.MainActivity
+import com.zr.nebula.activity.MainActivity
+import com.zr.repository.item.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

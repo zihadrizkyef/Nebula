@@ -6,7 +6,7 @@
     <application>
         <provider
             android:name=".helper.NebulaFileProvider"
-            android:authorities="com.zr.nebula.fileprovider"
+            android:authorities="${applicationId}.nebula.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -14,13 +14,11 @@
                 android:resource="@xml/file_paths" />
         </provider>
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true"
             android:icon="@drawable/baseline_info_24"
             android:label="@string/lib_name"
             android:launchMode="singleTask"
-            android:taskAffinity="com.olsera.nebula"
-            android:theme="@style/Theme.NebulaDemo" />
+            android:taskAffinity="com.olsera.nebula" />
     </application>
-
 </manifest>

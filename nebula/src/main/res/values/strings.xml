@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lib_name">Nebula</string>
-
-    <string name="no_logs_message">There\'s no stars in nebula</string>
+    <string name="n_logs">%s logs</string>
 </resources>

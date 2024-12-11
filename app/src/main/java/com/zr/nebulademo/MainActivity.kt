@@ -1,126 +1,67 @@
 package com.zr.nebulademo
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.appcompat.app.AppCompatActivity
 import com.thedeanda.lorem.LoremIpsum
 import com.zr.nebula.Nebula
-import com.zr.nebulademo.ui.theme.NebulaDemoTheme
+import com.zr.nebulademo.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            NebulaDemoTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    MainScreen()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        Nebula.init(this)
+        val lorem = LoremIpsum.getInstance()
+
+        binding.buttonLogD.setOnClickListener {
+            Nebula.d(lorem.getWords(Random.nextInt(3, 20)))
+        }
+        binding.buttonLogI.setOnClickListener {
+            Nebula.i(lorem.getWords(Random.nextInt(3, 20)))
+        }
+        binding.buttonLogW.setOnClickListener {
+            Nebula.w(lorem.getWords(Random.nextInt(3, 20)))
+        }
+        binding.buttonLogE.setOnClickListener {
+            Nebula.e(lorem.getWords(Random.nextInt(3, 20)))
+        }
+        binding.buttonLog2000.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                repeat(2_000) {
+                    val intRandom = (1..4).random()
+                    when (intRandom) {
+                        1 -> Nebula.i(lorem.getWords(5, 50))
+                        2 -> Nebula.w(lorem.getWords(5, 50))
+                        3 -> Nebula.d(lorem.getWords(5, 50))
+                        4 -> Nebula.e(lorem.getWords(5, 50))
+                    }
                 }
+                Nebula.e("Last loremipsum logs")
             }
         }
-    }
-}
-
-@Composable
-fun MainScreen() {
-    val loremIpsum = LoremIpsum.getInstance()
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        Button(
-            content = {
-                Text(text = "Add log i")
-            },
-            onClick = {
-                Nebula.i(loremIpsum.getWords(5, 50))
-            }
-        )
-        Button(
-            content = {
-                Text(text = "Add log w")
-            },
-            onClick = {
-                Nebula.w(loremIpsum.getWords(5, 50))
-            }
-        )
-        Button(
-            content = {
-                Text(text = "Add log d")
-            },
-            onClick = {
-                Nebula.d(loremIpsum.getWords(5, 50))
-            }
-        )
-        Button(
-            content = {
-                Text(text = "Add log e")
-            },
-            onClick = {
-                Nebula.e(loremIpsum.getWords(5, 50))
-            }
-        )
-        Button(
-            content = {
-                Text(text = "add log 2.000 data")
-            },
-            onClick = {
-                CoroutineScope(Dispatchers.IO).launch {
-                    repeat(2_000) {
-                        val intRandom = (1..4).random()
-                        when (intRandom) {
-                            1 -> Nebula.i(loremIpsum.getWords(5, 50))
-                            2 -> Nebula.w(loremIpsum.getWords(5, 50))
-                            3 -> Nebula.d(loremIpsum.getWords(5, 50))
-                            4 -> Nebula.e(loremIpsum.getWords(5, 50))
-                        }
+        binding.buttonLog100.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                repeat(100) {
+                    val intRandom = (1..4).random()
+                    when (intRandom) {
+                        1 -> Nebula.i(lorem.getWords(5, 50))
+                        2 -> Nebula.w(lorem.getWords(5, 50))
+                        3 -> Nebula.d(lorem.getWords(5, 50))
+                        4 -> Nebula.e(lorem.getWords(5, 50))
                     }
-                    Nebula.e("Zihad Rizky")
+                    delay(Random.nextLong(1000))
                 }
+                Nebula.e("Last loremipsum logs")
             }
-        )
-        Button(
-            content = {
-                Text(text = "gradually add 100 log")
-            },
-            onClick = {
-                CoroutineScope(Dispatchers.IO).launch {
-                    repeat(100) {
-                        delay(Random.nextLong(500))
-                        val intRandom = (1..4).random()
-                        when (intRandom) {
-                            1 -> Nebula.i(loremIpsum.getWords(5, 50))
-                            2 -> Nebula.w(loremIpsum.getWords(5, 50))
-                            3 -> Nebula.d(loremIpsum.getWords(5, 50))
-                            4 -> Nebula.e(loremIpsum.getWords(5, 50))
-                        }
-                    }
-                }
-            }
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NebulaDemoTheme {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            MainScreen()
         }
     }
 }
