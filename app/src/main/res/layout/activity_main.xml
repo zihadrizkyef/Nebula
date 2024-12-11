@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonLogI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add log i" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonLogE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add log e" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonLogW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add log w" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonLogD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add log d" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonLog2000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add 2000 random log" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonLog100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add 100 random log gradually" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

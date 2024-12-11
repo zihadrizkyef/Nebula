@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Nebula.init(this)
         val lorem = LoremIpsum.getInstance()
 
         binding.buttonLogD.setOnClickListener {
