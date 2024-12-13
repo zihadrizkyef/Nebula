@@ -31,6 +31,15 @@
             app:tint="#FFFFFF" />
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/buttonSave"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackground"
+            app:contentPadding="8dp"
+            app:srcCompat="@drawable/baseline_insert_drive_file_24"
+            app:tint="#FFFFFF" />
+
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/buttonShare"
             android:layout_width="40dp"
             android:layout_height="40dp"

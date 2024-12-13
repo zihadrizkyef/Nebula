@@ -1,7 +1,11 @@
 package com.zr.nebulademo
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.thedeanda.lorem.LoremIpsum
 import com.zr.nebula.Nebula
 import com.zr.nebulademo.databinding.ActivityMainBinding
@@ -60,6 +64,12 @@ class MainActivity : AppCompatActivity() {
                     delay(Random.nextLong(1000))
                 }
                 Nebula.e("Last loremipsum logs")
+            }
+        }
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 0)
             }
         }
     }
