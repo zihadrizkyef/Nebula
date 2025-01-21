@@ -2,4 +2,5 @@
 <resources>
     <string name="lib_name">Nebula</string>
     <string name="n_logs">%s logs</string>
+    <string name="empty_log">Nebula.i(…) information log\nNebula.d(…) debug log\nNebula.w(…) warning log\nNebula.e(…) error log</string>
 </resources>

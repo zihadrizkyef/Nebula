@@ -55,7 +55,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
+        app:fontFamily="monospace"
         tools:text="10 logs" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textEmpty"
+        android:layout_width="wrap_content"
+        android:textSize="16sp"
+        app:lineHeight="25sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:text="@string/empty_log"
+        android:textColor="#aaa"
+        app:fontFamily="monospace" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerLog"

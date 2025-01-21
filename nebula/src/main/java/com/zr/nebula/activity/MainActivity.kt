@@ -2,11 +2,11 @@ package com.zr.nebula.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts.CreateDocument
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.core.view.isVisible
 import com.zr.nebula.R
 import com.zr.nebula.databinding.ActivityLogListBinding
 import com.zr.nebula.extension.toCurrency
@@ -31,13 +31,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    private val requestPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (!isGranted) {
-                Toast.makeText(this, "Notification permission denied", Toast.LENGTH_SHORT).show()
-            }
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,6 +78,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.logs.observe(this) {
             binding.textCounter.text = getString(R.string.n_logs, it.size.toCurrency(false))
+            binding.textEmpty.isVisible = it.isEmpty()
             adapter.logs = it
             adapter.notifyDataSetChanged()
         }
