@@ -12,12 +12,13 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.zr.nebula.R
 import com.zr.nebula.activity.MainActivity
-import com.zr.repository.item.Log
+import com.zr.nebula.data.item.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.concurrent.ConcurrentLinkedDeque
 
 internal object NotificationHelper {
     private const val CHANNEL_ID = "NebulaChannelId"
@@ -27,7 +28,8 @@ internal object NotificationHelper {
     private lateinit var appContext: Context
     private var lastNotificationJob: Job? = null
     private var lastNotificationTime = 0L
-    private var messageQueue = LimitedList<String>(5)
+    private var messageQueue = ConcurrentLinkedDeque<String>()
+    private const val MESSAGE_LIMIT = 5
 
     fun init(context: Context) {
         appContext = context.applicationContext
@@ -44,13 +46,13 @@ internal object NotificationHelper {
     }
 
     fun scheduleNotification(log: Log) {
-        messageQueue.addLimited(log.toString())
+        addMessage(log.toString())
         if (System.currentTimeMillis() - lastNotificationTime > DELAY_TIME) {
             lastNotificationTime = System.currentTimeMillis()
             showNotification(log)
         } else {
             lastNotificationJob?.cancel()
-            lastNotificationJob = CoroutineScope(Dispatchers.Main).launch {
+            lastNotificationJob = CoroutineScope(Dispatchers.IO).launch {
                 delay(DELAY_TIME)
                 showNotification(log)
             }
@@ -91,10 +93,10 @@ internal object NotificationHelper {
         }
     }
 
-    private class LimitedList<T>(private val limitSize: Int) : ArrayList<T>() {
-        fun addLimited(element: T): Boolean {
-            if (size >= limitSize) removeAt(0)
-            return super.add(element)
+    private fun addMessage(message: String) {
+        if (messageQueue.size >= MESSAGE_LIMIT) {
+            messageQueue.pollFirst() // remove oldest
         }
+        messageQueue.offerLast(message) // add newest
     }
 }

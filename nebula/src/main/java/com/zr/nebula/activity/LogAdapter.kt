@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.zr.nebula.databinding.ItemLogBinding
-import com.zr.repository.item.Level
-import com.zr.repository.item.Log
+import com.zr.nebula.data.item.Level
+import com.zr.nebula.data.item.Log
 
-class LogAdapter(var logs: List<Log>) : RecyclerView.Adapter<LogAdapter.ViewHolder>() {
+internal class LogAdapter(var logs: List<Log>) : RecyclerView.Adapter<LogAdapter.ViewHolder>() {
     class ViewHolder(val binding: ItemLogBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

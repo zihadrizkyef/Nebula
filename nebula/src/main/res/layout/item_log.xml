@@ -2,27 +2,45 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textLevel"
-        android:layout_width="20dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        tools:text="W" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textSeparator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=":" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textMessage"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        tools:text="Consectetur adipiscing elit. Nullam tincidunt vitae elit et tristique" />
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textLevel"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            tools:text="W" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textSeparator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text=":" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            tools:text="Consectetur adipiscing elit. Nullam tincidunt vitae elit et tristique" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="01dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
+        android:background="#C5C5C5" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

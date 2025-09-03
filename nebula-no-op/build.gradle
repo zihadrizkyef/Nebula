@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.zr.nebula_no_op'
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         minSdk 21

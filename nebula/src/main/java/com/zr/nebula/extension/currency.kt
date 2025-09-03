@@ -10,7 +10,7 @@ import java.util.*
  * Format integer to currency
  * (Double) 5000.75 -> (String) Rp 5.000,75
  */
-fun Number.toCurrency(showCurrency: Boolean = true, currency: String = "Rp ", maxFractionDigits: Int = 2): String {
+internal fun Number.toCurrency(showCurrency: Boolean = true, currency: String = "Rp ", maxFractionDigits: Int = 2): String {
     val symbolConfig = if (currency.uppercase().startsWith("RP")) {
         val decFormat = DecimalFormatSymbols.getInstance()
         decFormat.groupingSeparator = '.'
@@ -38,7 +38,7 @@ fun Number.toCurrency(showCurrency: Boolean = true, currency: String = "Rp ", ma
  * Parse formatter currency to Int
  * (String) Rp 5.000,52 -> (Double) 5000.52
  */
-fun String.fromCurrency(currencySymbol: String = "Rp "): Double {
+internal fun String.fromCurrency(currencySymbol: String = "Rp "): Double {
     val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
     val clean = if (currencySymbol.lowercase().startsWith("rp")) {
         this.replace(Regex("[^0-9,]"), "")

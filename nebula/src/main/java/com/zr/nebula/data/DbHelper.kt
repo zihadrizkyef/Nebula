@@ -1,8 +1,8 @@
-package com.zr.repository
+package com.zr.nebula.data
 
 import android.content.Context
 import androidx.room.Room
-import com.zr.repository.item.Log
+import com.zr.nebula.data.item.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -10,7 +10,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-object DbHelper {
+internal object DbHelper {
     private lateinit var logDao: LogDao
 
     fun init(context: Context) {

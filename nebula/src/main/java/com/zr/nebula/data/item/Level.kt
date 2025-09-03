@@ -1,6 +1,6 @@
-package com.zr.repository.item
+package com.zr.nebula.data.item
 
-enum class Level(val code: String) {
+internal enum class Level(val code: String) {
     INFO("I"),
     DEBUG("D"),
     WARN("W"),

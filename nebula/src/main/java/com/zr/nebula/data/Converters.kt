@@ -1,9 +1,9 @@
-package com.zr.repository
+package com.zr.nebula.data
 
 import androidx.room.TypeConverter
 import java.util.Date
 
-object Converters {
+internal object Converters {
     @TypeConverter
     fun fromTimestamp(value: Long?): Date? {
         return if (value == null) null else Date(value)
