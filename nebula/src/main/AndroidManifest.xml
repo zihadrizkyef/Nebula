@@ -6,13 +6,14 @@
     <application>
         <provider
             android:name=".helper.NebulaFileProvider"
-            android:authorities="${applicationId}.nebula.fileprovider"
+            android:authorities="com.zr.nebula.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"

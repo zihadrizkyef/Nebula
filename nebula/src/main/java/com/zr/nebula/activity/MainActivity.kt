@@ -11,6 +11,7 @@ import com.zr.nebula.R
 import com.zr.nebula.databinding.ActivityLogListBinding
 import com.zr.nebula.extension.toCurrency
 import com.zr.nebula.data.item.Log
+import com.zr.nebula.helper.FileProviderUtil
 import java.io.File
 import java.io.FileWriter
 
@@ -62,8 +63,7 @@ internal class MainActivity : AppCompatActivity() {
                 }
 
                 //sharing file
-                val authority = "${applicationContext.packageName}.nebula.fileprovider"
-                val uri = FileProvider.getUriForFile(this, authority, file)
+                val uri = FileProviderUtil.getUriForFile(this, file)
                 val intent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
                     putExtra(Intent.EXTRA_STREAM, uri)

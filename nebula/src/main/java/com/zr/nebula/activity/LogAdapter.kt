@@ -1,8 +1,13 @@
 package com.zr.nebula.activity
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.zr.nebula.databinding.ItemLogBinding
 import com.zr.nebula.data.item.Level
@@ -28,6 +33,25 @@ internal class LogAdapter(var logs: List<Log>) : RecyclerView.Adapter<LogAdapter
         binding.textLevel.setTextColor(textColor)
         binding.textSeparator.setTextColor(textColor)
         binding.textMessage.setTextColor(textColor)
+
+        binding.buttonMore.setOnClickListener { view ->
+            showPopupMenu(view, item.toString())
+        }
+    }
+
+    private fun showPopupMenu(view: View, textToCopy: String) {
+        val popupMenu = PopupMenu(view.context, view)
+        popupMenu.menu.add("Copy to clipboard").setOnMenuItemClickListener {
+            copyToClipboard(view.context, textToCopy)
+            true
+        }
+        popupMenu.show()
+    }
+
+    private fun copyToClipboard(context: Context, text: String) {
+        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("log_message", text)
+        clipboard.setPrimaryClip(clip)
     }
 
     private fun getColorByLevel(levelCode: String): Int {
