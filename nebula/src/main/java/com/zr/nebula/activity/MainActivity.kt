@@ -3,14 +3,22 @@ package com.zr.nebula.activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts.CreateDocument
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.core.util.TypedValueCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import com.zr.nebula.R
 import com.zr.nebula.databinding.ActivityLogListBinding
 import com.zr.nebula.extension.toCurrency
 import com.zr.nebula.data.item.Log
+import com.zr.nebula.extension.dp
 import com.zr.nebula.helper.FileProviderUtil
 import com.zr.nebula.helper.NebulaFileProvider
 import java.io.File
@@ -36,8 +44,19 @@ internal class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityLogListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { _, windowInsets ->
+            val systemBarInsets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            binding.toolbar.updatePadding(top = systemBarInsets.top + 8.dp(this))
+            binding.recyclerLog.updatePadding(bottom = systemBarInsets.bottom)
+            WindowInsetsCompat.CONSUMED
+        }
+        WindowCompat.getInsetsController(window, window.decorView).run {
+            isAppearanceLightStatusBars = false
+            isAppearanceLightNavigationBars = true
+        }
 
         binding.refreshLayout.setColorSchemeColors(Color.parseColor("#111199"))
         binding.refreshLayout.isEnabled = false

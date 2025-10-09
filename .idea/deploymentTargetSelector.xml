@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-12-13T05:47:40.695021800Z">
+        <DropdownSelection timestamp="2025-10-09T01:51:16.963073300Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\huawei-oktober21\.android\avd\1080x2400_Phone_Portrait_Tiramisu.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\huawei-oktober21\.android\avd\Pixel_9a.avd" />
             </handle>
           </Target>
         </DropdownSelection>
