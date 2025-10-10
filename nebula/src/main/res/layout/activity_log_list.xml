@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#3F2482"
+        android:background="@color/primary"
         android:clipToPadding="false"
         android:gravity="center_vertical"
         android:paddingHorizontal="16dp"

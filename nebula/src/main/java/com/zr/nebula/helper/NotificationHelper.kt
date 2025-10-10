@@ -77,7 +77,7 @@ internal object NotificationHelper {
             inboxStyle.addLine(it)
         }
         val notification = NotificationCompat.Builder(appContext, CHANNEL_ID)
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setSmallIcon(R.drawable.baseline_info_24)
             .setContentTitle(appContext.getString(R.string.lib_name))
             .setContentText(log.toString())
             .setContentIntent(pendingIntent)
