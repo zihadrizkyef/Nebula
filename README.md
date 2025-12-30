@@ -9,21 +9,13 @@ Nebula is an Android library that simplifies application logging by providing a 
 
 ## Installation
 
-1. **Add Modules**
+Add the following dependencies to your app-level `build.gradle`:
 
-   Ensure the following modules are added to your project:
+```gradle
+debugImplementation "io.github.zihadrizkyef:nebula:1.0.3"
+releaseImplementation "io.github.zihadrizkyef:nebula-no-op:1.0.3"
+```
 
-   - `nebula`
-   - `nebula-no-op`
-
-2. **Add Dependencies**
-
-   Include the dependencies in your app `build.gradle` file:
-
-   ```gradle
-   implementation project(":nebula")
-   debugImplementation project(":nebula-no-op")
-   ```
 
 ## Usage
 
