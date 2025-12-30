@@ -1,14 +1,11 @@
+import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+
 plugins {
     id "com.android.library"
     id "org.jetbrains.kotlin.android"
     id "com.google.devtools.ksp" version "1.9.0-1.0.13"
 
     id "com.vanniktech.maven.publish"
-}
-
-signing {
-    useGpgCmd()
-    sign(publishing.publications)
 }
 
 android {
@@ -56,4 +53,38 @@ dependencies {
     implementation("junit:junit:4.13.2")
     implementation("androidx.test.ext:junit:1.2.1")
     implementation("androidx.test.espresso:espresso-core:3.6.1")
+}
+
+signing {
+    useGpgCmd()
+}
+
+mavenPublishing {
+    coordinates("io.github.zihadrizkyef", "nebula", "1.0.3")
+
+    pom {
+        name = "Nebula"
+        description = "Nebula is an Android library that simplifies application logging by providing a real-time logging interface directly accessible through the notification bar. This unique approach ensures that important logs are always visible and easy to monitor during development and debugging."
+        inceptionYear = "2025"
+        url = "https://github.com/zihadrizkyef/nebula/"
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            }
+        }
+        developers {
+            developer {
+                id = "zihadrizkyef"
+                name = "Zihad Rizky Edwin Fikri"
+                url = "https://github.com/zihadrizkyef/"
+            }
+        }
+        scm {
+            url = "https://github.com/zihadrizkyef/nebula/"
+            connection = "scm:git:git://github.com/zihadrizkyef/nebula.git"
+            developerConnection = "scm:git:ssh://git@github.com/zihadrizkyef/nebula.git"
+        }
+    }
 }
