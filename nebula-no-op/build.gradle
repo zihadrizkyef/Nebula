@@ -1,10 +1,10 @@
-import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
-
 plugins {
     id "com.android.library"
     id "org.jetbrains.kotlin.android"
     id "com.vanniktech.maven.publish"
 }
+
+apply from: '../gradle/publish-config.gradle'
 
 android {
     namespace 'com.zr.nebula_no_op'
@@ -37,31 +37,12 @@ signing {
 }
 
 mavenPublishing {
-    coordinates("io.github.zihadrizkyef", "nebula-no-op", "1.0.3")
+    coordinates("io.github.zihadrizkyef", "nebula-no-op", nebulaVersion)
 
     pom {
         name = "Nebula No-Op"
         description = "No-op implementation of Nebula logging library."
-        inceptionYear = "2025"
-        url = "https://github.com/zihadrizkyef/nebula/"
-        licenses {
-            license {
-                name = "The Apache License, Version 2.0"
-                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
-                distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
-            }
-        }
-        developers {
-            developer {
-                id = "zihadrizkyef"
-                name = "Zihad Rizky Edwin Fikri"
-                url = "https://github.com/zihadrizkyef/"
-            }
-        }
-        scm {
-            url = "https://github.com/zihadrizkyef/nebula/"
-            connection = "scm:git:git://github.com/zihadrizkyef/nebula.git"
-            developerConnection = "scm:git:ssh://git@github.com/zihadrizkyef/nebula.git"
-        }
+
+        configurePom(delegate)
     }
 }

@@ -73,7 +73,7 @@ internal object NotificationHelper {
         )
         val inboxStyle = NotificationCompat.InboxStyle()
             .setBigContentTitle(appContext.getString(R.string.lib_name))
-        messageQueue.forEach {
+        messageQueue.descendingIterator().forEach {
             inboxStyle.addLine(it)
         }
         val notification = NotificationCompat.Builder(appContext, CHANNEL_ID)

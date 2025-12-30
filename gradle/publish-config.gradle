@@ -1,0 +1,29 @@
+ext {
+    nebulaVersion = "1.0.4"
+
+    configurePom = { pomConfig ->
+        pomConfig.with {
+            inceptionYear = "2025"
+            url = "https://github.com/zihadrizkyef/nebula/"
+            licenses {
+                license {
+                    name = "The Apache License, Version 2.0"
+                    url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                }
+            }
+            developers {
+                developer {
+                    id = "zihadrizkyef"
+                    name = "Zihad Rizky Edwin Fikri"
+                    url = "https://github.com/zihadrizkyef/"
+                }
+            }
+            scm {
+                url = "https://github.com/zihadrizkyef/nebula/"
+                connection = "scm:git:git://github.com/zihadrizkyef/nebula.git"
+                developerConnection = "scm:git:ssh://git@github.com/zihadrizkyef/nebula.git"
+            }
+        }
+    }
+}
