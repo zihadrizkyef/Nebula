@@ -1,68 +1,120 @@
 # Nebula
 
-Nebula is an Android library that simplifies application logging by providing a real-time logging interface directly accessible through the notification bar. This unique approach ensures that important logs are always visible and easy to monitor during development and debugging.
+Nebula is an Android logging library that displays **real-time application logs directly in the notification bar**, enabling developers, QA, and support teams to inspect logs **without Logcat or Android Studio**.
+
+This approach is especially useful when debugging on physical devices, staging builds, or environments where connecting a PC is inconvenient or impossible.
 
 <div style="display: flex; justify-content: space-around;">
     <img src="readmeassets/ss2.jpg" alt="Nebula Screenshot" height="800"/>
     <img src="readmeassets/ss1.jpg" alt="Nebula Screenshot" height="800"/>
 </div>
 
+---
+
+## Why Nebula?
+
+Traditional Android logging relies heavily on Logcat, which requires a connected development environment. Nebula removes this dependency by exposing logs directly on the device UI.
+
+Nebula is ideal when:
+
+* QA or non-developers need access to logs
+* Debugging issues on physical devices without a PC
+* Inspecting logs in staging or internal builds
+* Quickly understanding app behavior during manual testing
+
+## When *Not* to Use Nebula
+
+* Production releases distributed via Play Store
+* Performance-critical or high-frequency logging scenarios
+
+---
+
 ## Installation
 
-Add the following dependencies to your app-level `build.gradle`:
+Add the following dependencies to your **app-level** `build.gradle`:
 
 ```gradle
 debugImplementation "io.github.zihadrizkyef:nebula:1.0.3"
 releaseImplementation "io.github.zihadrizkyef:nebula-no-op:1.0.3"
 ```
 
+> The `nebula-no-op` artifact ensures that all Nebula calls are stripped out in release builds with zero runtime overhead.
 
-## Usage
+---
 
-1. **Initialize Nebula**
+## Quick Start (2-Minute Setup)
 
-   Initialize Nebula in your `Application` class:
+### 1. Initialize Nebula
 
-   ```kotlin
-   class MyApp : Application() {
-       override fun onCreate() {
-           super.onCreate()
-           Nebula.init(this)
-       }
-   }
-   ```
+Initialize Nebula once in your `Application` class:
 
-2. **Log Messages**
+```kotlin
+class MyApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        Nebula.init(this)
+    }
+}
+```
 
-   Use Nebula to log messages, which will appear in the notification bar:
+### 2. Write Logs
 
-   ```kotlin
-   Nebula.d("Debug log message")
-   Nebula.e("Error log message")
-   Nebula.i("Info log message")
-   ```
+Log messages will immediately appear in the notification bar:
 
-   Logs can be expanded or dismissed directly from the notification bar for convenience.
+```kotlin
+Nebula.d("Checkout screen opened")
+Nebula.i("User logged in")
+Nebula.e("Payment failed")
+```
+
+Pull down the notification panel to view, expand, or dismiss logs in real time.
+
+---
+
+## Typical Use Cases
+
+* Debugging bugs reported by QA on real devices
+* Monitoring app flow during manual testing
+* Inspecting logs on tablets, kiosks, or embedded devices
+* Reducing dependency on Logcat for day-to-day debugging
+
+---
+
+## Sample App
+
+A minimal sample application is available in the `/sample` directory to help you get started quickly.
+
+The sample demonstrates:
+
+* Nebula initialization
+* Logging different log levels
+* Real-time log updates in the notification bar
+
+---
 
 ## Contributions
 
-We welcome contributions from the community! To contribute:
+Contributions are welcome and appreciated.
 
-1. Fork this repository.
-2. Create a new branch for your feature or fix.
-3. Submit a Pull Request with a clear description of your changes.
+To contribute:
+
+1. Fork this repository
+2. Create a new branch for your feature or fix
+3. Submit a Pull Request with a clear description and rationale
+
+Please ensure all changes are well-tested and documented.
+
+---
 
 ## License
 
 Nebula is released under the [MIT License](LICENSE).
 
-## Contact
-
-For further inquiries, feel free to reach out:
-
-- **Email**: zihadrizkyef@gmail.com
-- **GitHub Issues**: [Open an issue](https://github.com/zihadrizkyef/Nebula/issues)
-
 ---
 
-We hope Nebula enhances your Android development experience by making logs more accessible! 🚀
+## Contact
+
+For questions, feedback, or bug reports:
+
+* **Email**: [zihadrizkyef@gmail.com](mailto:zihadrizkyef@gmail.com)
+* **GitHub Issues**: [Open an issue](https://github.com/zihadrizkyef/Nebula/issues)
