@@ -37,7 +37,7 @@ signing {
 }
 
 mavenPublishing {
-    coordinates("io.github.zihadrizkyef", "nebula-no-op", nebulaVersion)
+    coordinates(nebulaGroupId, "nebula-no-op", nebulaVersion)
 
     pom {
         name = "Nebula No-Op"
