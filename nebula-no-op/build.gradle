@@ -8,10 +8,10 @@ apply from: '../gradle/publish-config.gradle'
 
 android {
     namespace 'com.zr.nebula_no_op'
-    compileSdk 36
+    compileSdk = 36
 
     defaultConfig {
-        minSdk 21
+        minSdk = 21
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
