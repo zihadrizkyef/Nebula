@@ -4,9 +4,11 @@ Nebula is an Android logging library that displays **real-time application logs 
 
 This approach is especially useful when debugging on physical devices, staging builds, or environments where connecting a PC is inconvenient or impossible.
 
+**Real-time logs displayed directly in the notification bar**
+
 <div style="display: flex; justify-content: space-around;">
-    <img src="readmeassets/ss2.jpg" alt="Nebula Screenshot" height="800"/>
-    <img src="readmeassets/ss1.jpg" alt="Nebula Screenshot" height="800"/>
+    <img src="readmeassets/ss2.jpg" alt="Nebula Screenshot" height="420"/>
+    <img src="readmeassets/ss1.jpg" alt="Nebula Screenshot" height="420"/>
 </div>
 
 ---
