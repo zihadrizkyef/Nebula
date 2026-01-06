@@ -7,8 +7,8 @@ This approach is especially useful when debugging on physical devices, staging b
 **Real-time logs displayed directly in the notification bar**
 
 <div style="display: flex; justify-content: space-around;">
-    <img src="readmeassets/ss1.png" alt="Nebula Screenshot" height="420"/>
-    <img src="readmeassets/ss2.png" alt="Nebula Screenshot" height="420"/>
+    <img src="readmeassets/ss3.png" alt="Nebula Screenshot" height="420"/>
+    <img src="readmeassets/ss4.png" alt="Nebula Screenshot" height="420"/>
 </div>
 
 ---
