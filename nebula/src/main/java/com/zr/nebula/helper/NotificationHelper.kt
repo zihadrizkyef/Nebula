@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentLinkedDeque
 
 internal object NotificationHelper {
+    private const val NOTIF_ID = 1
     private const val CHANNEL_ID = "NebulaChannelId"
     private const val CHANNEL_NAME = "Nebula Channel"
     private const val DELAY_TIME = 500L
@@ -60,8 +61,6 @@ internal object NotificationHelper {
     }
 
     private fun showNotification(log: Log) {
-        val notificationId = 1
-
         val intent = Intent(appContext, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
@@ -89,7 +88,7 @@ internal object NotificationHelper {
 
         if (ActivityCompat.checkSelfPermission(appContext, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
             val notificationManager = NotificationManagerCompat.from(appContext)
-            notificationManager.notify(notificationId, notification)
+            notificationManager.notify(NOTIF_ID, notification)
         }
     }
 
@@ -98,5 +97,11 @@ internal object NotificationHelper {
             messageQueue.pollFirst() // remove oldest
         }
         messageQueue.offerLast(message) // add newest
+    }
+
+    fun clear() {
+        messageQueue.clear()
+        val notificationManager = NotificationManagerCompat.from(appContext)
+        notificationManager.cancel(NOTIF_ID)
     }
 }

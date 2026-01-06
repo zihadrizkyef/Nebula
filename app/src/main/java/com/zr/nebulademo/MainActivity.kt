@@ -6,9 +6,9 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.thedeanda.lorem.LoremIpsum
 import com.zr.nebula.Nebula
 import com.zr.nebulademo.databinding.ActivityMainBinding
+import com.zr.nebulademo.DummyMessageGenerator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -23,32 +23,29 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val lorem = LoremIpsum.getInstance()
-
         binding.buttonLogD.setOnClickListener {
-            Nebula.d(lorem.getWords(Random.nextInt(3, 20)))
+            Nebula.d(DummyMessageGenerator.debugMessages.random())
         }
         binding.buttonLogI.setOnClickListener {
-            Nebula.i(lorem.getWords(Random.nextInt(3, 20)))
+            Nebula.i(DummyMessageGenerator.infoMessages.random())
         }
         binding.buttonLogW.setOnClickListener {
-            Nebula.w(lorem.getWords(Random.nextInt(3, 20)))
+            Nebula.w(DummyMessageGenerator.warningMessages.random())
         }
         binding.buttonLogE.setOnClickListener {
-            Nebula.e(lorem.getWords(Random.nextInt(3, 20)))
+            Nebula.e(DummyMessageGenerator.errorMessages.random())
         }
         binding.buttonLog2000.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 repeat(2_000) {
                     val intRandom = (1..4).random()
                     when (intRandom) {
-                        1 -> Nebula.i(lorem.getWords(5, 50))
-                        2 -> Nebula.w(lorem.getWords(5, 50))
-                        3 -> Nebula.d(lorem.getWords(5, 50))
-                        4 -> Nebula.e(lorem.getWords(5, 50))
+                        1 -> Nebula.i(DummyMessageGenerator.infoMessages.random())
+                        2 -> Nebula.w(DummyMessageGenerator.warningMessages.random())
+                        3 -> Nebula.d(DummyMessageGenerator.debugMessages.random())
+                        4 -> Nebula.e(DummyMessageGenerator.errorMessages.random())
                     }
                 }
-                Nebula.e("Last loremipsum logs")
             }
         }
         binding.buttonLog100.setOnClickListener {
@@ -56,18 +53,21 @@ class MainActivity : AppCompatActivity() {
                 repeat(100) {
                     val intRandom = (1..4).random()
                     when (intRandom) {
-                        1 -> Nebula.i(lorem.getWords(5, 50))
-                        2 -> Nebula.w(lorem.getWords(5, 50))
-                        3 -> Nebula.d(lorem.getWords(5, 50))
-                        4 -> Nebula.e(lorem.getWords(5, 50))
+                        1 -> Nebula.i(DummyMessageGenerator.infoMessages.random())
+                        2 -> Nebula.w(DummyMessageGenerator.warningMessages.random())
+                        3 -> Nebula.d(DummyMessageGenerator.debugMessages.random())
+                        4 -> Nebula.e(DummyMessageGenerator.errorMessages.random())
                     }
                     delay(Random.nextLong(1000))
                 }
-                Nebula.e("Last loremipsum logs")
             }
         }
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 0)
             }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zr.nebula.data.DbHelper
 import com.zr.nebula.data.item.Log
+import com.zr.nebula.helper.NotificationHelper
 import kotlinx.coroutines.launch
 
 internal class MainViewModel : ViewModel() {
@@ -29,6 +30,7 @@ internal class MainViewModel : ViewModel() {
     fun deleteAll() {
         viewModelScope.launch {
             DbHelper.deleteAll()
+            NotificationHelper.clear()
         }
     }
 }
