@@ -24,11 +24,6 @@ Nebula is ideal when:
 * Inspecting logs in staging or internal builds
 * Quickly understanding app behavior during manual testing
 
-## When *Not* to Use Nebula
-
-* Production releases distributed via Play Store
-* Performance-critical or high-frequency logging scenarios
-
 ---
 
 ## Installation
