@@ -24,11 +24,6 @@ Nebula is ideal when:
 * Inspecting logs in staging or internal builds
 * Quickly understanding app behavior during manual testing
 
-## When *Not* to Use Nebula
-
-* Production releases distributed via Play Store
-* Performance-critical or high-frequency logging scenarios
-
 ---
 
 ## Installation
@@ -36,8 +31,8 @@ Nebula is ideal when:
 Add the following dependencies to your **app-level** `build.gradle`:
 
 ```gradle
-debugImplementation "io.github.zihadrizkyef:nebula:1.0.3"
-releaseImplementation "io.github.zihadrizkyef:nebula-no-op:1.0.3"
+debugImplementation "io.github.zihadrizkyef:nebula:1.0.5"
+releaseImplementation "io.github.zihadrizkyef:nebula-no-op:1.0.5"
 ```
 
 > The `nebula-no-op` artifact ensures that all Nebula calls are stripped out in release builds with zero runtime overhead.
