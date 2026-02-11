@@ -1,32 +1,26 @@
 #INI ADALAH LIBRARY, MAKA GUNAKAN VERSI RENDAH!!!
 
 [versions]
-agp = "8.13.2"
-kotlin = "2.3.0"
-coreKtx = "1.17.0"
+agp = "8.6.1"
+kotlin = "1.9.25"
+coreKtx = "1.16.0"
 appcompat = "1.7.0"
 lifecycleLivedataKtx = "2.8.6"
 lifecycleViewmodelKtx = "2.8.6"
-lifecycleExtensions = "2.2.0"
-lorem = "2.2"
 material = "1.12.0"
 activity = "1.9.3"
-constraintlayout = "2.2.0"
 swiperefreshlayout = "1.1.0"
-room = "2.7.2"
-vanniktech-publish = "0.35.0"
+room = "2.6.1"
+vanniktech-publish = "0.32.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-androidx-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtensions" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-lorem = { group = "com.thedeanda", name = "lorem", version.ref = "lorem" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 

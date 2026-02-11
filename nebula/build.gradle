@@ -1,15 +1,16 @@
 plugins {
     id "com.android.library"
     id "org.jetbrains.kotlin.android"
-    id "com.google.devtools.ksp" version "2.3.4"
+    id "com.google.devtools.ksp" version "1.9.25-1.0.20"
     id "com.vanniktech.maven.publish"
+    id "signing"
 }
 
 apply from: '../gradle/publish-config.gradle'
 
 android {
     namespace 'com.zr.nebula'
-    compileSdk 36
+    compileSdk = 35
 
     defaultConfig {
         minSdk 21
@@ -43,7 +44,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.extensions)
 
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)

@@ -18,7 +18,7 @@ internal object DbHelper {
             context,
             AppDatabase::class.java,
             "nebula-db"
-        ).fallbackToDestructiveMigration(true).build()
+        ).fallbackToDestructiveMigration().build()
 
         logDao = db.logDao()
     }

@@ -2,13 +2,14 @@ plugins {
     id "com.android.library"
     id "org.jetbrains.kotlin.android"
     id "com.vanniktech.maven.publish"
+    id "signing"
 }
 
 apply from: '../gradle/publish-config.gradle'
 
 android {
     namespace 'com.zr.nebula_no_op'
-    compileSdk = 36
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 21
