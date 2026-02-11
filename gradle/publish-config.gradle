@@ -1,5 +1,5 @@
 ext {
-    nebulaVersion = "1.0.6"
+    nebulaVersion = "1.0.7"
     nebulaGroupId = "io.github.zihadrizkyef"
 
     configurePom = { pomConfig ->
