@@ -31,8 +31,8 @@ Nebula is ideal when:
 Add the following dependencies to your **app-level** `build.gradle`:
 
 ```gradle
-debugImplementation "io.github.zihadrizkyef:nebula:1.0.5"
-releaseImplementation "io.github.zihadrizkyef:nebula-no-op:1.0.5"
+debugImplementation "io.github.zihadrizkyef:nebula:1.0.6"
+releaseImplementation "io.github.zihadrizkyef:nebula-no-op:1.0.6"
 ```
 
 > The `nebula-no-op` artifact ensures that all Nebula calls are stripped out in release builds with zero runtime overhead.
