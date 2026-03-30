@@ -20,6 +20,7 @@
             android:icon="@drawable/baseline_info_24"
             android:label="@string/lib_name"
             android:launchMode="singleTask"
-            android:taskAffinity="com.olsera.nebula" />
+            android:taskAffinity="com.olsera.nebula"
+            android:theme="@style/AppTheme" />
     </application>
 </manifest>
