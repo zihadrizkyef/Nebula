@@ -25,12 +25,15 @@ internal object NotificationHelper {
     private const val CHANNEL_ID = "NebulaChannelId"
     private const val CHANNEL_NAME = "Nebula Channel"
     private const val DELAY_TIME = 500L
+    private const val CLEAR_REQUEST_CODE = 1
+    internal const val ACTION_CLEAR_ALL = "com.zr.nebula.action.CLEAR_ALL"
 
     private lateinit var appContext: Context
     private var lastNotificationJob: Job? = null
     private var lastNotificationTime = 0L
     private var messageQueue = ConcurrentLinkedDeque<String>()
     private const val MESSAGE_LIMIT = 5
+    private const val MESSAGE_CHARACTER_LIMIT = 80
 
     fun init(context: Context) {
         appContext = context.applicationContext
@@ -70,6 +73,15 @@ internal object NotificationHelper {
             intent,
             PendingIntent.FLAG_IMMUTABLE
         )
+        val clearIntent = Intent(appContext, ClearLogsReceiver::class.java).apply {
+            action = ACTION_CLEAR_ALL
+        }
+        val clearPendingIntent = PendingIntent.getBroadcast(
+            appContext,
+            CLEAR_REQUEST_CODE,
+            clearIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
         val inboxStyle = NotificationCompat.InboxStyle()
             .setBigContentTitle(appContext.getString(R.string.lib_name))
         messageQueue.descendingIterator().forEach {
@@ -82,6 +94,11 @@ internal object NotificationHelper {
             .setContentIntent(pendingIntent)
             .setStyle(inboxStyle)
             .setAutoCancel(true)
+            .addAction(
+                R.drawable.baseline_delete_sweep_24,
+                appContext.getString(R.string.clear),
+                clearPendingIntent
+            )
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setSound(null)
             .build()
@@ -96,7 +113,12 @@ internal object NotificationHelper {
         if (messageQueue.size >= MESSAGE_LIMIT) {
             messageQueue.pollFirst() // remove oldest
         }
-        messageQueue.offerLast(message) // add newest
+        val displayMessage = if (message.length > MESSAGE_CHARACTER_LIMIT) {
+            message.take(MESSAGE_CHARACTER_LIMIT - 1) + "…"
+        } else {
+            message
+        }
+        messageQueue.offerLast(displayMessage) // add newest
     }
 
     fun clear() {

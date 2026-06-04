@@ -14,6 +14,8 @@ internal object DbHelper {
     private lateinit var logDao: LogDao
 
     fun init(context: Context) {
+        if (::logDao.isInitialized) return
+
         val db = Room.databaseBuilder(
             context,
             AppDatabase::class.java,
