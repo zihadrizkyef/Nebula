@@ -6,10 +6,14 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import com.zr.nebula.R
 import com.zr.nebula.activity.MainActivity
 import com.zr.nebula.data.item.Log
@@ -94,9 +98,10 @@ internal object NotificationHelper {
             .setContentIntent(pendingIntent)
             .setStyle(inboxStyle)
             .setAutoCancel(true)
+            .setColor(ContextCompat.getColor(appContext, R.color.primary))
             .addAction(
                 R.drawable.baseline_delete_sweep_24,
-                appContext.getString(R.string.clear),
+                createNebulaActionLabel(appContext.getString(R.string.clear)),
                 clearPendingIntent
             )
             .setPriority(NotificationCompat.PRIORITY_LOW)
@@ -119,6 +124,17 @@ internal object NotificationHelper {
             message
         }
         messageQueue.offerLast(displayMessage) // add newest
+    }
+
+    private fun createNebulaActionLabel(label: String): CharSequence {
+        return SpannableString(label).apply {
+            setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(appContext, R.color.primary)),
+                0,
+                label.length,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
     }
 
     fun clear() {
