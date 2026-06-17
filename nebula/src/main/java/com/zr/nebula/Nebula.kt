@@ -6,7 +6,7 @@ import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import android.os.Build
-import com.zr.nebula.activity.MainActivity
+import com.zr.nebula.activity.NebulaLogActivity
 import com.zr.nebula.data.DbHelper
 import com.zr.nebula.helper.NotificationHelper
 import com.zr.nebula.data.item.Level
@@ -35,7 +35,7 @@ object Nebula {
                 .setLongLabel("Open Nebula")
                 .setIcon(Icon.createWithResource(context, R.drawable.shortcut_icon))
                 .setIntent(
-                    Intent(context, MainActivity::class.java)
+                    Intent(context, NebulaLogActivity::class.java)
                         .setAction(Intent.ACTION_VIEW)
                 )
                 .build()

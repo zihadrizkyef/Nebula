@@ -15,7 +15,7 @@
         </provider>
 
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.NebulaLogActivity"
             android:exported="true"
             android:icon="@drawable/baseline_info_24"
             android:label="@string/lib_name"

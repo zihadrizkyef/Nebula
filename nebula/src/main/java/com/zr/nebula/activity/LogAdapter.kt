@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zr.nebula.databinding.ItemLogBinding
 import com.zr.nebula.data.item.Level
 import com.zr.nebula.data.item.Log
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 internal class LogAdapter(var logs: List<Log>) : RecyclerView.Adapter<LogAdapter.ViewHolder>() {
     class ViewHolder(val binding: ItemLogBinding) : RecyclerView.ViewHolder(binding.root)
@@ -26,6 +28,8 @@ internal class LogAdapter(var logs: List<Log>) : RecyclerView.Adapter<LogAdapter
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = with(holder) {
         val item = logs[position]
 
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        binding.textDate.text = sdf.format(item.createdAt)
         binding.textLevel.text = item.levelCode
         binding.textMessage.text = item.message
 

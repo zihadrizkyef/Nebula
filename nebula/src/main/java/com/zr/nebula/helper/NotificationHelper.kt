@@ -15,7 +15,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.zr.nebula.R
-import com.zr.nebula.activity.MainActivity
+import com.zr.nebula.activity.NebulaLogActivity
 import com.zr.nebula.data.item.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -68,7 +68,7 @@ internal object NotificationHelper {
     }
 
     private fun showNotification(log: Log) {
-        val intent = Intent(appContext, MainActivity::class.java).apply {
+        val intent = Intent(appContext, NebulaLogActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent = PendingIntent.getActivity(
